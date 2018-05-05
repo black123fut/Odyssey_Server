@@ -1,10 +1,7 @@
 package Server;
 
-import org.jdom2.JDOMException;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
@@ -31,13 +28,15 @@ public class UserManager extends Thread{
             this.outputStream = clientSocket.getOutputStream();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
             String xml = reader.readLine();
+            System.out.println(xml);
 
             Document message = stringToXml(xml);
 
             if (message != null){
                 message.getDocumentElement().normalize();
-                NodeList nodeList = message.getElementsByTagName("command");
+                NodeList nodeList = message.getElementsByTagName("opcode");
 
                 if (nodeList.item(0).getTextContent().equalsIgnoreCase("registrar")){
                     registar(message);
@@ -50,8 +49,24 @@ public class UserManager extends Thread{
         }
     }
 
+    private void reproducir(){
+        try{
+            File path = new File("src/music/musica.mp3");
+            byte[] buffer = new byte[(int) path.length()];
+
+            FileInputStream file = new FileInputStream(path);
+            file.read(buffer);
+
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+
+
+
+    }
+
     private void registar(Document message){
-        NodeList dataList = message.getElementsByTagName("data");
+        NodeList dataList = message.getElementsByTagName("Data");
         Element data = (Element) dataList.item(0);
 
         System.out.println("Username: " + data.getElementsByTagName("username").item(0).getTextContent());
@@ -72,17 +87,4 @@ public class UserManager extends Thread{
         }
         return null;
     }
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
