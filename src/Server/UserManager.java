@@ -1,5 +1,7 @@
 package Server;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -28,18 +30,18 @@ public class UserManager extends Thread{
             this.outputStream = clientSocket.getOutputStream();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            XmlMapper mapper = new XmlMapper();
 
             String xml = reader.readLine();
-            System.out.println(xml);
+            Message mensaje = mapper.readValue(xml, SignInMessage.class);
 
             Document message = stringToXml(xml);
 
             if (message != null){
                 message.getDocumentElement().normalize();
-                NodeList nodeList = message.getElementsByTagName("opcode");
 
-                if (nodeList.item(0).getTextContent().equalsIgnoreCase("registrar")){
-                    registar(message);
+                if (mensaje.getOpcode().equalsIgnoreCase("registrar")){
+                    registar(mensaje);
                 }
             }
             clientSocket.close();
@@ -60,19 +62,46 @@ public class UserManager extends Thread{
         } catch(IOException e){
             e.printStackTrace();
         }
-
-
-
     }
 
-    private void registar(Document message){
-        NodeList dataList = message.getElementsByTagName("Data");
-        Element data = (Element) dataList.item(0);
+    private void registar(Message message) throws IOException{
+        File archivo = new File("users.json");
+        ObjectMapper mapperJson = new ObjectMapper();
+        User[] users = mapperJson.readValue(archivo, User[].class);
 
-        System.out.println("Username: " + data.getElementsByTagName("username").item(0).getTextContent());
-        System.out.println("Name: " + data.getElementsByTagName("name").item(0).getTextContent());
-        System.out.println("Surname: " + data.getElementsByTagName("surname").item(0).getTextContent());
-        System.out.println("Age: " + data.getElementsByTagName("age").item(0).getTextContent());
+        SignInMessage data = message.getData();
+
+        for (User x: users) {
+            if (x == null){
+                break;
+            }
+            else if (x.getUsername().equals(data.getUsername())){
+                System.out.println("Nombre de usuario ya existe");
+                return;
+            }
+        }
+
+        for (int i = 0; i < users.length; i++) {
+            if (users[i] == null){
+                users[i] = new User(data.getUsername(), data.getName(), data.getSurname(), data.getAge());
+                break;
+            }
+        }
+        mapperJson.writeValue(archivo, users);
+
+
+        System.out.println("Username: " + message.getData().getUsername());
+        System.out.println("User: " + message.getData().getName());
+        System.out.println("Surname: " + message.getData().getUsername());
+        System.out.println("Age: " + message.getData().getAge());
+
+//        NodeList dataList = message.getElementsByTagName("Data");
+//        Element data = (Element) dataList.item(0);
+//
+//        System.out.println("Username: " + data.getElementsByTagName("username").item(0).getTextContent());
+//        System.out.println("Name: " + data.getElementsByTagName("name").item(0).getTextContent());
+//        System.out.println("Surname: " + data.getElementsByTagName("surname").item(0).getTextContent());
+//        System.out.println("Age: " + data.getElementsByTagName("age").item(0).getTextContent());
 
     }
 
