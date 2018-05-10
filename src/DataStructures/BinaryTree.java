@@ -7,7 +7,7 @@ public class BinaryTree<T extends Comparable> {
         root = null;
     }
 
-    private void add(T data){
+    public void add(T data){
         this.root = this.add(data, this.root);
     }
 
@@ -50,6 +50,18 @@ public class BinaryTree<T extends Comparable> {
             return current;
         } else{
             return findMin(current.getLeft());
+        }
+    }
+
+    public void printInorden(){
+        printInorden(root);
+    }
+
+    private void printInorden(TreeNode<T> current){
+        if (current != null){
+            printInorden(current.getLeft());
+            System.out.println(current.getData() + "");
+            printInorden(current.getRight());
         }
     }
 }

@@ -1,10 +1,12 @@
 package Server;
 
+import Mensajes.ErrorMessage;
+import Mensajes.Message;
+import Mensajes.SignInMessage;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -16,7 +18,8 @@ import java.net.Socket;
 public class UserManager extends Thread{
     private Socket clientSocket;
     private Server server;
-    private OutputStream outputStream;
+    private InputStream inputStream;
+    private PrintWriter outputStream;
 
     public UserManager(Server server, Socket clientSocket) {
         this.server = server;
@@ -26,24 +29,22 @@ public class UserManager extends Thread{
     @Override
     public void run(){
         try{
-            InputStream inputStream = clientSocket.getInputStream();
-            this.outputStream = clientSocket.getOutputStream();
+            outputStream = new PrintWriter(clientSocket.getOutputStream(), true);
+            inputStream = clientSocket.getInputStream();
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             XmlMapper mapper = new XmlMapper();
 
-            String xml = reader.readLine();
-            Message mensaje = mapper.readValue(xml, SignInMessage.class);
-
-            Document message = stringToXml(xml);
-
-            if (message != null){
-                message.getDocumentElement().normalize();
+            String xml;
+            while((xml = reader.readLine()) != null){
+                Message mensaje = mapper.readValue(xml, Message.class);
 
                 if (mensaje.getOpcode().equalsIgnoreCase("registrar")){
-                    registar(mensaje);
+                    Message<SignInMessage> mail = mapper.readValue(xml, new TypeReference<Message<SignInMessage>>() {});
+                    registar(mail);
                 }
             }
+
             clientSocket.close();
 
         } catch (IOException e){
@@ -53,29 +54,53 @@ public class UserManager extends Thread{
 
     private void reproducir(){
         try{
-            File path = new File("src/music/musica.mp3");
-            byte[] buffer = new byte[(int) path.length()];
-
+            File path = new File("src/music/musicc.wav");
             FileInputStream file = new FileInputStream(path);
-            file.read(buffer);
+
+            byte[] buffer = inputStreamToByteArray(file);
+
+
+            //outputStream.write(buffer);
+//            byte[] buffer = new byte[(int) path.length()];
+
+//            file.read(buffer);
+
 
         } catch(IOException e){
             e.printStackTrace();
         }
     }
 
-    private void registar(Message message) throws IOException{
+    public byte[] inputStreamToByteArray(InputStream inputStream) throws IOException{
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[8192];
+        int bytesRead;
+        while((bytesRead = inputStream.read(buffer)) > 0){
+            baos.write(buffer, 0, bytesRead);
+        }
+        return baos.toByteArray();
+    }
+
+    private void registar(Message<SignInMessage> message) throws IOException{
         File archivo = new File("users.json");
         ObjectMapper mapperJson = new ObjectMapper();
         User[] users = mapperJson.readValue(archivo, User[].class);
-
-        SignInMessage data = message.getData();
 
         for (User x: users) {
             if (x == null){
                 break;
             }
-            else if (x.getUsername().equals(data.getUsername())){
+            else if (x.getUsername().equals(message.getData().getUsername())){
+                Message<ErrorMessage> errorMessage = new Message<>();
+                errorMessage.setOpcode("444");
+
+                ErrorMessage error = new ErrorMessage();
+                error.setError("Nombre de usuario ya existe");
+
+                errorMessage.setData(error);
+                XmlMapper mapper2 = new XmlMapper();
+
+                send(mapper2.writeValueAsString(errorMessage));
                 System.out.println("Nombre de usuario ya existe");
                 return;
             }
@@ -83,26 +108,12 @@ public class UserManager extends Thread{
 
         for (int i = 0; i < users.length; i++) {
             if (users[i] == null){
-                users[i] = new User(data.getUsername(), data.getName(), data.getSurname(), data.getAge());
+                users[i] = new User(message.getData().getUsername(), message.getData().getName()
+                        , message.getData().getSurname(), message.getData().getAge());
                 break;
             }
         }
         mapperJson.writeValue(archivo, users);
-
-
-        System.out.println("Username: " + message.getData().getUsername());
-        System.out.println("User: " + message.getData().getName());
-        System.out.println("Surname: " + message.getData().getUsername());
-        System.out.println("Age: " + message.getData().getAge());
-
-//        NodeList dataList = message.getElementsByTagName("Data");
-//        Element data = (Element) dataList.item(0);
-//
-//        System.out.println("Username: " + data.getElementsByTagName("username").item(0).getTextContent());
-//        System.out.println("Name: " + data.getElementsByTagName("name").item(0).getTextContent());
-//        System.out.println("Surname: " + data.getElementsByTagName("surname").item(0).getTextContent());
-//        System.out.println("Age: " + data.getElementsByTagName("age").item(0).getTextContent());
-
     }
 
     private Document stringToXml(String xmlStr) {
@@ -115,5 +126,14 @@ public class UserManager extends Thread{
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void send(String message){
+        try {
+            outputStream.println(message);
+            outputStream.flush();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

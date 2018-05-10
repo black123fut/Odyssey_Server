@@ -1,6 +1,6 @@
 package Server;
 
-public class User {
+public class User implements Comparable<User>{
     private String username;
     private String name;
     private String surname;
@@ -57,4 +57,31 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public int compareTo(User o) {
+        if (getUsername().compareTo(o.getUsername()) < 0){
+            return -1;
+        } else if (getUsername().compareTo(o.getUsername()) > 0){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

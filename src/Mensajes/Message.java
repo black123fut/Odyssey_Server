@@ -1,4 +1,4 @@
-package Server;
+package Mensajes;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
@@ -7,11 +7,11 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JacksonXmlRootElement(localName = "Message")
-public class Message {
+public class Message<T> {
     private String opcode;
     @JacksonXmlProperty(localName = "Data")
     @JacksonXmlElementWrapper(useWrapping = false)
-    private SignInMessage data;
+    private T data;
 
     public Message(){
 
@@ -25,11 +25,11 @@ public class Message {
         this.opcode = opcode;
     }
 
-    public SignInMessage getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(SignInMessage data) {
+    public void setData(T data) {
         this.data = data;
     }
 }

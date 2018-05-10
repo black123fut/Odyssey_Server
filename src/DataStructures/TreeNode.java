@@ -1,6 +1,6 @@
 package DataStructures;
 
-public class TreeNode<T> {
+public class TreeNode<T extends Comparable> {
     private T data;
     private TreeNode<T> right;
     private TreeNode<T> left;

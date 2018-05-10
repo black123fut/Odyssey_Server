@@ -1,5 +1,6 @@
-package Server;
+package Mensajes;
 
+import Mensajes.Message;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 public class SignInMessage extends Message {
