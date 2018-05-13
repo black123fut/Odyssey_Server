@@ -2,6 +2,7 @@ package Mensajes;
 
 import Mensajes.Message;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class SignInMessage extends Message {
     @JacksonXmlProperty(localName="username")
@@ -12,6 +13,8 @@ public class SignInMessage extends Message {
     private String surname;
     @JacksonXmlProperty(localName="age")
     private int age;
+    @JacksonXmlProperty(localName="password")
+    private String password;
 
     public SignInMessage(){
 
@@ -54,5 +57,13 @@ public class SignInMessage extends Message {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = DigestUtils.md5Hex(password).toUpperCase();
     }
 }
