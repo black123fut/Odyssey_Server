@@ -1,19 +1,26 @@
 package Server;
 
-import Mensajes.InfoMessage;
-import Mensajes.LogInMessage;
-import Mensajes.Message;
-import Mensajes.SignInMessage;
+import DataStructures.LinkedList;
+import Mensajes.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
+import javax.sound.sampled.AudioInputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Base64;
 
 
 public class UserManager extends Thread{
@@ -36,9 +43,12 @@ public class UserManager extends Thread{
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             XmlMapper mapper = new XmlMapper();
 
+            //play();
+
             String xml;
             //Lee cada mensaje nuevo.
             while((xml = reader.readLine()) != null){
+                System.out.println(xml);
                 //Convierte el xml a un objeto Mensaje.
                 Message mensaje = mapper.readValue(xml, Message.class);
 
@@ -54,6 +64,13 @@ public class UserManager extends Thread{
                     Message<LogInMessage> messageInformation = mapper.readValue(xml, new TypeReference<Message<LogInMessage>>() {});
                     iniciarSesion(messageInformation);
                 }
+                else if (mensaje.getOpcode().equalsIgnoreCase("004")){
+                    Message<SongMessage> songMessage = mapper.readValue(xml, new TypeReference<Message<SongMessage>>() {});
+                    play(songMessage);
+                } else if (mensaje.getOpcode().equalsIgnoreCase("005")){
+                    Message<SongMessage> songMessage = mapper.readValue(xml, new TypeReference<Message<SongMessage>>() {});
+                    saveSong(songMessage);
+                }
             }
             clientSocket.close();
 
@@ -62,8 +79,118 @@ public class UserManager extends Thread{
         }
     }
 
+    private void saveSong(Message<SongMessage> message)  throws IOException {
+        File archivo = new File("songs.json");
+        ObjectMapper jsonMapper = new ObjectMapper();
+        Song[] tmpSongs = jsonMapper.readValue(archivo, Song[].class);
+        LinkedList<Song> songList = new LinkedList<>();
 
-    public byte[] inputStreamToByteArray(InputStream inputStream) throws IOException{
+        for (int i = 0; i < tmpSongs.length; i++) {
+            songList.add(tmpSongs[i]);
+        }
+
+
+
+
+        //continuara
+
+        writeBytesToFileClassic(Base64.getDecoder().decode(message.getData().getBytes()), "src/Music/Rick.mp3");
+    }
+
+    private void registar(Message<SignInMessage> message) throws IOException{
+        File archivo = new File("users.json");
+        ObjectMapper mapperJson = new ObjectMapper();
+        //Lee el archivo json de los usuarios y lo guarda en una variable.
+        User[] tmpUsers = mapperJson.readValue(archivo, User[].class);
+        LinkedList<User> userList = new LinkedList<>();
+
+        for (int i = 0; i < tmpUsers.length; i++) {
+            userList.add(tmpUsers[i]);
+        }
+
+
+        //Verifica que no exista un usuario con el mismo nombre de usuario.
+        for (User x: tmpUsers) {
+            if (x == null){
+                break;
+            }
+            else if (x.getUsername().equals(message.getData().getUsername())){
+                //Crea el mensaje para la respuesta del cliente.
+                Message<InfoMessage> errorMessage = writeInfoMessage("002", "Nombre de usuario ya existe");
+
+                XmlMapper mapper2 = new XmlMapper();
+                //Manda la respuesta al cliente.
+                send(mapper2.writeValueAsString(errorMessage));
+                return;
+            }
+        }
+        //Guarda al nuevo usuario en la variable "users".
+        userList.add(new User(message.getData().getUsername(), message.getData().getName()
+                , message.getData().getSurname(), message.getData().getAge()));
+        Message<InfoMessage> response = writeInfoMessage("003", "Aceptado");
+
+        XmlMapper mapper2 = new XmlMapper();
+        send(mapper2.writeValueAsString(response));
+
+        User[] users = new User[userList.length()];
+        for (int i = 0; i < userList.length(); i++) {
+            users[i] = userList.get(i);
+        }
+
+        //Sobre-escribe la variable users en un json.
+        mapperJson.writeValue(archivo, users);
+    }
+
+    private static void writeBytesToFileClassic(byte[] bFile, String fileDest) {
+        FileOutputStream fileOuputStream = null;
+
+        try {
+            fileOuputStream = new FileOutputStream(fileDest);
+            fileOuputStream.write(bFile);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fileOuputStream != null) {
+                try {
+                    fileOuputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    public void play(Message<SongMessage> message) throws FileNotFoundException, IOException{
+        File mp3 = new File("src/music/torero.mp3");
+
+
+//        File tmp = File.createTempFile("test", "mp3");
+//        tmp.deleteOnExit();
+//        FileOutputStream fos = new FileOutputStream(tmp);
+//        fos.write(mp3Array);
+//        fos.close();
+        File archivo = new File("songs.json");
+        ObjectMapper jsonMapper = new ObjectMapper();
+        Song[] songs = jsonMapper.readValue(archivo, Song[].class);
+        jsonMapper.writeValue(archivo, songs);
+
+        Message<SongMessage> songMessage = new Message<>();
+        songMessage.setOpcode("004");
+
+        //System.out.println(mp3Array[0]);
+        byte[] mp3Array = Files.readAllBytes(Paths.get("src/music/torero.mp3"));
+
+        SongMessage song  = new SongMessage();
+        song.setBytes(Base64.getEncoder().encodeToString(mp3Array));
+
+        songMessage.setData(song);
+        XmlMapper mapper = new XmlMapper();
+        send(mapper.writeValueAsString(songMessage));
+    }
+
+    public byte[] inputStreamToByteArray(InputStream inputStream) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         byte[] buffer = new byte[8192];
         int bytesRead;
@@ -99,44 +226,7 @@ public class UserManager extends Thread{
         send(xmlMapper.writeValueAsString(response));
     }
 
-    private void registar(Message<SignInMessage> message) throws IOException{
-        File archivo = new File("users.json");
-        ObjectMapper mapperJson = new ObjectMapper();
-        //Lee el archivo json de los usuarios y lo guarda en una variable.
-        User[] users = mapperJson.readValue(archivo, User[].class);
 
-        //Verifica que no exista un usuario con el mismo nombre de usuario.
-        for (User x: users) {
-            if (x == null){
-                break;
-            }
-            else if (x.getUsername().equals(message.getData().getUsername())){
-                //Crea el mensaje para la respuesta del cliente.
-                Message<InfoMessage> errorMessage = writeInfoMessage("002", "Nombre de usuario ya existe");
-
-                XmlMapper mapper2 = new XmlMapper();
-                //Manda la respuesta al cliente.
-                send(mapper2.writeValueAsString(errorMessage));
-                return;
-            }
-        }
-
-        //Guarda al nuevo usuario en la variable "users".
-        for (int i = 0; i < users.length; i++) {
-            if (users[i] == null){
-                users[i] = new User(message.getData().getUsername(), message.getData().getName()
-                        , message.getData().getSurname(), message.getData().getAge());
-
-                Message<InfoMessage> response = writeInfoMessage("003", "Aceptado");
-
-                XmlMapper mapper2 = new XmlMapper();
-                send(mapper2.writeValueAsString(response));
-                break;
-            }
-        }
-        //Sobre-escribe la variable users en un json.
-        mapperJson.writeValue(archivo, users);
-    }
 
     /**
      * Escribe los mensajes con Data de tipo InfoMessage.

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JacksonXmlRootElement(localName = "Message")
 public class Message<T> {
+    @JacksonXmlProperty(localName = "opcode")
     private String opcode;
     @JacksonXmlProperty(localName = "Data")
     @JacksonXmlElementWrapper(useWrapping = false)
