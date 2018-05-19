@@ -5,21 +5,15 @@ import Mensajes.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-import javax.sound.sampled.AudioInputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Base64;
 
 
@@ -48,7 +42,6 @@ public class UserManager extends Thread{
             String xml;
             //Lee cada mensaje nuevo.
             while((xml = reader.readLine()) != null){
-                System.out.println(xml);
                 //Convierte el xml a un objeto Mensaje.
                 Message mensaje = mapper.readValue(xml, Message.class);
 
@@ -86,15 +79,51 @@ public class UserManager extends Thread{
         LinkedList<Song> songList = new LinkedList<>();
 
         for (int i = 0; i < tmpSongs.length; i++) {
-            songList.add(tmpSongs[i]);
+            if (tmpSongs[i] != null)
+                songList.add(tmpSongs[i]);
         }
 
+        SongMessage data = message.getData();
+        for (int i = 0; i < songList.length(); i++) {
+            if (songList.get(i) != null){
+                if (songList.get(i).getArtista().equalsIgnoreCase(data.getArtista()) &&
+                        songList.get(i).getTitulo().equalsIgnoreCase(data.getCancion())){
+                    Message<InfoMessage> errorMessage = writeInfoMessage("002", "La Cancion ya existe");
 
+                    XmlMapper xmlMapper = new XmlMapper();
+                    send(xmlMapper.writeValueAsString(errorMessage));
+                    return;
+                }
+            }
+        }
 
+        String path = pathMaker(data.getGenero(), data.getArtista(), data.getCancion());
+        System.out.println(path);
+        songList.add(new Song(data.getCancion(), data.getArtista(),
+                    data.getGenero(), data.getAlbum(),
+                    data.getLetra(), path));
+        //Convierte los bytes a un archivo en mp3.
+        writeBytesToMp3(Base64.getDecoder().decode(data.getBytes()), path);
 
-        //continuara
+        //Convierte la lista en un array
+        Song[] songs = new Song[songList.length()];
+        for (int i = 0; i < songList.length(); i++) {
+            songs[i] = songList.get(i);
+        }
 
-        writeBytesToFileClassic(Base64.getDecoder().decode(message.getData().getBytes()), "src/Music/Rick.mp3");
+        jsonMapper.writeValue(archivo, songs);
+
+        Message<InfoMessage> response = writeInfoMessage("006", "Cancion guardada con exito");
+        XmlMapper mapper = new XmlMapper();
+
+        send(mapper.writeValueAsString(response));
+    }
+
+    private String pathMaker(String genero, String artista, String cancion){
+        if(genero == null){
+            genero = "Otros";
+        }
+        return "src/Music/" + genero + "/" + artista + " - " + cancion + ".mp3";
     }
 
     private void registar(Message<SignInMessage> message) throws IOException{
@@ -107,7 +136,6 @@ public class UserManager extends Thread{
         for (int i = 0; i < tmpUsers.length; i++) {
             userList.add(tmpUsers[i]);
         }
-
 
         //Verifica que no exista un usuario con el mismo nombre de usuario.
         for (User x: tmpUsers) {
@@ -126,7 +154,7 @@ public class UserManager extends Thread{
         }
         //Guarda al nuevo usuario en la variable "users".
         userList.add(new User(message.getData().getUsername(), message.getData().getName()
-                , message.getData().getSurname(), message.getData().getAge()));
+                , message.getData().getSurname(), message.getData().getAge(), message.getData().getPassword()));
         Message<InfoMessage> response = writeInfoMessage("003", "Aceptado");
 
         XmlMapper mapper2 = new XmlMapper();
@@ -141,7 +169,7 @@ public class UserManager extends Thread{
         mapperJson.writeValue(archivo, users);
     }
 
-    private static void writeBytesToFileClassic(byte[] bFile, String fileDest) {
+    private void writeBytesToMp3(byte[] bFile, String fileDest) {
         FileOutputStream fileOuputStream = null;
 
         try {

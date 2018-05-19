@@ -11,11 +11,12 @@ public class User implements Comparable<User>{
 
     }
 
-    public User(String username, String name, String surname, int age) {
+    public User(String username, String name, String surname, int age, String password) {
         this.username = username;
         this.name = name;
         this.surname = surname;
         this.age = age;
+        this.password = password;
     }
 
     public String getUsername() {

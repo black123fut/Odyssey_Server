@@ -3,22 +3,22 @@ package Server;
 public class Song {
     private String titulo;
     private String artista;
+    private String genero;
     private String album;
     private String letra;
     private String path;
-    private String bytes;
 
     public Song(){
 
     }
 
-    public Song(String titulo, String artista, String album, String letra, String path, String bytes) {
+    public Song(String titulo, String artista, String genero, String album, String letra, String path) {
         this.titulo = titulo;
         this.artista = artista;
+        this.genero = genero;
         this.album = album;
         this.letra = letra;
         this.path = path;
-        this.bytes = bytes;
     }
 
     public String getTitulo() {
@@ -41,6 +41,14 @@ public class Song {
         return album;
     }
 
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
     public void setAlbum(String album) {
         this.album = album;
     }
@@ -59,13 +67,5 @@ public class Song {
 
     public void setPath(String path) {
         this.path = path;
-    }
-
-    public String getBytes() {
-        return bytes;
-    }
-
-    public void setBytes(String bytes) {
-        this.bytes = bytes;
     }
 }

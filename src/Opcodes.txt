@@ -1,7 +1,8 @@
 000 - Registrar                      (Servidor)
 001 - Iniciar Sesion                 (Servidor)
-002 - Error al iniciar o registrar   (Cliente)
+002 - Error                          (Cliente)
 003 - Solicitud de registro o        (Cliente)
       inicio de sesion aprobada
 004 - Realizar streaming
 005 - Guardar cancion en el servidor
+006 - Cancion guardada con exito
