@@ -1,8 +1,13 @@
-000 - Registrar                      (Servidor)
-001 - Iniciar Sesion                 (Servidor)
-002 - Error                          (Cliente)
+000 - Registrar.                      (Servidor)
+001 - Iniciar Sesion.                 (Servidor)
+002 - Error.                          (Cliente)
 003 - Solicitud de registro o        (Cliente)
-      inicio de sesion aprobada
-004 - Realizar streaming
-005 - Guardar cancion en el servidor
-006 - Cancion guardada con exito
+      inicio de sesion aprobada.
+004 - Realizar streaming.
+005 - Guardar cancion en el servidor.
+006 - Cancion guardada con exito.
+007 - Solicitud de busqueda.
+008 - Envia resultado de la busqueda o ordenamiento.
+009 - Solicitud para ordenar la lista por album.
+010 - Solicitud para ordenar la lista por artista.
+011 - Solicitud para ordenar la lista por titulo.

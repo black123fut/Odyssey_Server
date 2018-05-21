@@ -1,6 +1,9 @@
 package Server;
 
+import DataStructures.AvlTree;
+import DataStructures.BinaryTree;
 import DataStructures.LinkedList;
+import DataStructures.Sorts;
 import Mensajes.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -60,9 +63,21 @@ public class UserManager extends Thread{
                 else if (mensaje.getOpcode().equalsIgnoreCase("004")){
                     Message<SongMessage> songMessage = mapper.readValue(xml, new TypeReference<Message<SongMessage>>() {});
                     play(songMessage);
-                } else if (mensaje.getOpcode().equalsIgnoreCase("005")){
+                }
+                else if (mensaje.getOpcode().equalsIgnoreCase("005")){
                     Message<SongMessage> songMessage = mapper.readValue(xml, new TypeReference<Message<SongMessage>>() {});
                     saveSong(songMessage);
+                }
+                else if (mensaje.getOpcode().equalsIgnoreCase("007")){
+                    Message<SearchMessage> message = mapper.readValue(xml, new TypeReference<Message<SearchMessage>>() {});
+                    search(message);
+                }
+                else if (mensaje.getOpcode().equalsIgnoreCase("009") ||
+                            mensaje.getOpcode().equalsIgnoreCase("010") ||
+                            mensaje.getOpcode().equalsIgnoreCase("011")) {
+                    System.out.println(xml);
+                    Message<String[][]> message = mapper.readValue(xml, new TypeReference<Message<String[][]>>() {});
+                    Sort(message);
                 }
             }
             clientSocket.close();
@@ -166,6 +181,8 @@ public class UserManager extends Thread{
         }
 
         //Sobre-escribe la variable users en un json.
+//        XmlMapper fer = new XmlMapper();
+//        fer.writerWithDefaultPrettyPrinter().writeValue(new File("test.xml"), users);
         mapperJson.writeValue(archivo, users);
     }
 
@@ -218,14 +235,92 @@ public class UserManager extends Thread{
         send(mapper.writeValueAsString(songMessage));
     }
 
-    public byte[] inputStreamToByteArray(InputStream inputStream) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        byte[] buffer = new byte[8192];
-        int bytesRead;
-        while((bytesRead = inputStream.read(buffer)) > 0){
-            baos.write(buffer, 0, bytesRead);
+    public void search(Message<SearchMessage> message) throws  IOException{
+        SearchMessage data = message.getData();
+        XmlMapper xmlMapper = new XmlMapper();
+
+        File archivo  =new File("songs.json");
+        ObjectMapper jsonMapper = new ObjectMapper();
+        Song[] songs = jsonMapper.readValue(archivo, Song[].class);
+
+        BinaryTree<Song> tree = new BinaryTree<>();
+        AvlTree<Song> avlTree = new AvlTree<>();
+        LinkedList<Song> songList;
+
+        for (int i = 0; i < songs.length; i++) {
+            tree.add(songs[i]);
         }
-        return baos.toByteArray();
+
+        if (data.getType().equalsIgnoreCase("Artista")){
+            for (int i = 0; i < songs.length; i++) {
+                avlTree.add(songs[i]);
+            }
+            songList = avlTree.get(message.getData().getInput());
+        }
+        else if (data.getType().equalsIgnoreCase("Cancion")){
+            songList = tree.get(message.getData().getInput(), "Cancion");
+        }
+        else if (data.getType().equalsIgnoreCase("Album")){
+            songList = tree.get(message.getData().getInput(), "Album");
+        }
+        else {
+            Message<InfoMessage> error = writeInfoMessage("002", "Debe ingresar un tipo");
+            send(xmlMapper.writeValueAsString(error));
+            return;
+        }
+
+        Song[] songsArray = new Song[songList.length()];
+        for (int i = 0; i < songList.length(); i++) {
+            songsArray[i] = songList.get(i);
+        }
+
+        Message<Song[]> response = new Message<>();
+        response.setOpcode("008");
+
+        response.setData(songsArray);
+
+        send(xmlMapper.writeValueAsString(response));
+
+//        xmlMapper.writeValue(new File("test.xml"), response);
+//        System.out.println(xmlMapper.writeValueAsString(response));
+//        Message<InfoMessage> response = writeInfoMessage("008", );
+
+        //continuara
+
+    }
+
+    @SuppressWarnings("Duplicates")
+    public void Sort(Message<String[][]> message) throws IOException{
+        String[][] dataMessage = message.getData();
+        LinkedList<Song> songs = new LinkedList<>();
+        Sorts sort = new Sorts();
+        XmlMapper xmlMapper = new XmlMapper();
+
+        for (int i = 0; i < dataMessage.length; i++) {
+            songs.add(new Song());
+            songs.get(i).setTitulo(dataMessage[i][0]);
+            songs.get(i).setArtista(dataMessage[i][1]);
+            songs.get(i).setAlbum(dataMessage[i][2]);
+        }
+
+        if (message.getOpcode().equalsIgnoreCase("009"))
+            sort.bubblesort(songs);
+        else if (message.getOpcode().equalsIgnoreCase("010"))
+            sort.radixSort(songs);
+        else if (message.getOpcode().equalsIgnoreCase("011"))
+            sort.quickSort(songs);
+
+        Song[] songsArray = new Song[songs.length()];
+        for (int i = 0; i < songsArray.length; i++) {
+            songsArray[i] = songs.get(i);
+        }
+
+        Message<Song[]> response = new Message<>();
+        response.setOpcode("008");
+
+        response.setData(songsArray);
+
+        send(xmlMapper.writeValueAsString(response));
     }
 
     private void iniciarSesion(Message<LogInMessage> message) throws IOException{
@@ -254,7 +349,15 @@ public class UserManager extends Thread{
         send(xmlMapper.writeValueAsString(response));
     }
 
-
+    public byte[] inputStreamToByteArray(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[8192];
+        int bytesRead;
+        while((bytesRead = inputStream.read(buffer)) > 0){
+            baos.write(buffer, 0, bytesRead);
+        }
+        return baos.toByteArray();
+    }
 
     /**
      * Escribe los mensajes con Data de tipo InfoMessage.

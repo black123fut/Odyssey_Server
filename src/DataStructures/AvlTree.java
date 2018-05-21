@@ -1,5 +1,7 @@
 package DataStructures;
 
+import Server.Song;
+
 public class AvlTree<T extends Comparable> {
     private AvlNode<T> root;
 
@@ -71,5 +73,22 @@ public class AvlTree<T extends Comparable> {
         n2.setHeight(max(height(n2.getLeft()), height(n2.getRight())) + 1);
         n1.setHeight(max(height(n1.getLeft()), n2.getHeight()) + 1);
         return n1;
+    }
+
+    public LinkedList<T> get(String data){
+        LinkedList<T> list = new LinkedList<>();
+        return get(root, data, list);
+    }
+
+    private LinkedList<T> get(AvlNode<T> current, String data, LinkedList<T> list){
+        if (current != null){
+            Song info = (Song) current.getData();
+            get(current.getLeft(), data, list);
+            get(current.getRight(), data, list);
+            if (info.getArtista().equalsIgnoreCase(data))
+                list.add(current.getData());
+            list.add(current.getData());
+        }
+        return list;
     }
 }

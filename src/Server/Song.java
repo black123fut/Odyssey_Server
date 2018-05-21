@@ -1,6 +1,6 @@
 package Server;
 
-public class Song {
+public class Song implements Comparable<Song>{
     private String titulo;
     private String artista;
     private String genero;
@@ -68,4 +68,44 @@ public class Song {
     public void setPath(String path) {
         this.path = path;
     }
+
+//    public int compareSong(Song o) {
+//        if (getTitulo().compareTo(o.getTitulo()) < 0){
+//            return -1;
+//        } else if (getTitulo().compareTo(o.getTitulo()) > 0){
+//            return 1;
+//        } else {
+//            return 0;
+//        }
+//    }
+
+    public int compareArtist(Song o) {
+        if (getArtista().compareTo(o.getArtista()) < 0){
+            return -1;
+        } else if (getArtista().compareTo(o.getArtista()) > 0){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public int compareAlbum(Song o){
+        if (getAlbum().compareTo(o.getAlbum()) < 0){
+            return -1;
+        } else if (getAlbum().compareTo(o.getAlbum()) > 0){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public int compareTo(Song o) {
+        if (getTitulo().compareTo(o.getTitulo()) < 0){
+            return -1;
+        } else if (getTitulo().compareTo(o.getTitulo()) > 0){
+            return 1;
+        } else {
+            return 0;
+        }    }
 }

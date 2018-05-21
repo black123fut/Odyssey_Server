@@ -1,5 +1,7 @@
 package DataStructures;
 
+import Server.Song;
+
 public class BinaryTree<T extends Comparable> {
     private TreeNode<T> root;
 
@@ -53,6 +55,48 @@ public class BinaryTree<T extends Comparable> {
         }
     }
 
+    public LinkedList<T> get(String object, String type){
+        LinkedList<T> list = new LinkedList<>();
+        return this.get(root, object, list, type);
+    }
+
+//    private T get(TreeNode<T> current, T data, LinkedList<T> list){
+//        Song info = (Song) current.getData();
+//
+//        if (info.getTitulo() == data){
+//            list.add(current.getData());
+//        } else {
+//            T tmp = get(current.getLeft(), data, list);
+//            if (tmp == null){
+//                tmp = get(current.getRight(), data, list);
+//            }
+//        }
+//
+//        return null;
+//    }
+
+    /**
+     * Recorre el arbol para almacenarlos en una lista.
+     * @param current Nodo actual del recorrido.
+     * @param list Lista en la que se almacenan los valores de los nodos.
+     * @return La lista con los elementos del arbol.
+     */
+    private LinkedList<T> get(TreeNode<T> current, String data, LinkedList<T> list, String type){
+        if (current != null){
+            Song info = (Song) current.getData();
+            get(current.getLeft(), data, list, type);
+            get(current.getRight(), data, list, type);
+            if (type.equalsIgnoreCase("Cancion")){
+                if (info.getTitulo().equalsIgnoreCase(data))
+                    list.add(current.getData());
+            } else if (type.equalsIgnoreCase("Album")){
+                if (info.getAlbum().equalsIgnoreCase(data))
+                    list.add(current.getData());
+            }
+        }
+        return list;
+    }
+
     public void printInorden(){
         printInorden(root);
     }
@@ -65,16 +109,3 @@ public class BinaryTree<T extends Comparable> {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
