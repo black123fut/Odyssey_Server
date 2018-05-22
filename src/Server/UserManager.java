@@ -40,8 +40,6 @@ public class UserManager extends Thread{
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             XmlMapper mapper = new XmlMapper();
 
-            //play();
-
             String xml;
             //Lee cada mensaje nuevo.
             while((xml = reader.readLine()) != null){
@@ -208,7 +206,7 @@ public class UserManager extends Thread{
     }
 
     public void play(Message<SongMessage> message) throws FileNotFoundException, IOException{
-        File mp3 = new File("src/music/torero.mp3");
+//        File mp3 = new File("src/music/torero.mp3");
 
 
 //        File tmp = File.createTempFile("test", "mp3");
@@ -221,25 +219,55 @@ public class UserManager extends Thread{
         Song[] songs = jsonMapper.readValue(archivo, Song[].class);
         jsonMapper.writeValue(archivo, songs);
 
-        Message<SongMessage> songMessage = new Message<>();
-        songMessage.setOpcode("004");
+        SongMessage data = message.getData();
+        byte[] mp3Array;
 
-        //System.out.println(mp3Array[0]);
-        byte[] mp3Array = Files.readAllBytes(Paths.get("src/music/torero.mp3"));
+        for (int i = 0; i < songs.length; i++) {
+            if(data.getArtista().equalsIgnoreCase(songs[i].getArtista()) && data.getCancion().equalsIgnoreCase(songs[i].getTitulo())){
+                mp3Array = Files.readAllBytes(Paths.get(songs[i].getPath()));
 
-        SongMessage song  = new SongMessage();
-        song.setBytes(Base64.getEncoder().encodeToString(mp3Array));
+                Message<SongMessage> songMessage = new Message<>();
+                songMessage.setOpcode("004");
 
-        songMessage.setData(song);
-        XmlMapper mapper = new XmlMapper();
-        send(mapper.writeValueAsString(songMessage));
+                //System.out.println(mp3Array[0]);
+//              mp3Array = Files.readAllBytes(Paths.get("src/music/torero.mp3"));
+
+                SongMessage song  = new SongMessage();
+                song.setBytes(Base64.getEncoder().encodeToString(mp3Array));
+
+                songMessage.setData(song);
+                XmlMapper mapper = new XmlMapper();
+                send(mapper.writeValueAsString(songMessage));
+                return;
+            }
+        }
+
+        Message<InfoMessage> errorMessage = writeInfoMessage("002", "Error inesperado");
+
+        XmlMapper mapper2 = new XmlMapper();
+        //Manda la respuesta al cliente.
+        send(mapper2.writeValueAsString(errorMessage));
+
+
+//        Message<SongMessage> songMessage = new Message<>();
+//        songMessage.setOpcode("004");
+//
+//        //System.out.println(mp3Array[0]);
+////        mp3Array = Files.readAllBytes(Paths.get("src/music/torero.mp3"));
+//
+//        SongMessage song  = new SongMessage();
+//        song.setBytes(Base64.getEncoder().encodeToString(mp3Array));
+//
+//        songMessage.setData(song);
+//        XmlMapper mapper = new XmlMapper();
+//        send(mapper.writeValueAsString(songMessage));
     }
 
     public void search(Message<SearchMessage> message) throws  IOException{
         SearchMessage data = message.getData();
         XmlMapper xmlMapper = new XmlMapper();
 
-        File archivo  =new File("songs.json");
+        File archivo  = new File("songs.json");
         ObjectMapper jsonMapper = new ObjectMapper();
         Song[] songs = jsonMapper.readValue(archivo, Song[].class);
 
