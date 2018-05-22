@@ -18,6 +18,7 @@ import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Base64;
+import java.util.Scanner;
 
 
 public class UserManager extends Thread{
@@ -40,11 +41,16 @@ public class UserManager extends Thread{
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             XmlMapper mapper = new XmlMapper();
 
+            Scanner scanner = new Scanner(new InputStreamReader(inputStream));
+
             String xml;
             //Lee cada mensaje nuevo.
-            while((xml = reader.readLine()) != null){
+            while(scanner.hasNextLine()){
+                xml = scanner.nextLine();
+
                 //Convierte el xml a un objeto Mensaje.
                 Message mensaje = mapper.readValue(xml, Message.class);
+                System.out.println(xml);
 
                 //Registra un usuario y lo escribe en el json
                 if (mensaje.getOpcode().equalsIgnoreCase("000")){
@@ -77,8 +83,8 @@ public class UserManager extends Thread{
                     Message<String[][]> message = mapper.readValue(xml, new TypeReference<Message<String[][]>>() {});
                     Sort(message);
                 }
+
             }
-            clientSocket.close();
 
         } catch (IOException e){
             e.printStackTrace();
@@ -158,7 +164,7 @@ public class UserManager extends Thread{
             else if (x.getUsername().equals(message.getData().getUsername())){
                 //Crea el mensaje para la respuesta del cliente.
                 Message<InfoMessage> errorMessage = writeInfoMessage("002", "Nombre de usuario ya existe");
-
+                System.out.println("Regristro fallido");
                 XmlMapper mapper2 = new XmlMapper();
                 //Manda la respuesta al cliente.
                 send(mapper2.writeValueAsString(errorMessage));
