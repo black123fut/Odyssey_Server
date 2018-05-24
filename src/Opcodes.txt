@@ -11,3 +11,5 @@
 009 - Solicitud para ordenar la lista por album.
 010 - Solicitud para ordenar la lista por artista.
 011 - Solicitud para ordenar la lista por titulo.
+012 - Solicitud para eliminar una cancion.
+013 - Cancion eliminada.

@@ -55,9 +55,9 @@ public class BinaryTree<T extends Comparable> {
         }
     }
 
-    public LinkedList<T> get(String object, String type){
+    public LinkedList<T> get(String object){
         LinkedList<T> list = new LinkedList<>();
-        return this.get(root, object, list, type);
+        return this.get(root, object, list);
     }
 
 //    private T get(TreeNode<T> current, T data, LinkedList<T> list){
@@ -81,18 +81,14 @@ public class BinaryTree<T extends Comparable> {
      * @param list Lista en la que se almacenan los valores de los nodos.
      * @return La lista con los elementos del arbol.
      */
-    private LinkedList<T> get(TreeNode<T> current, String data, LinkedList<T> list, String type){
+    private LinkedList<T> get(TreeNode<T> current, String data, LinkedList<T> list){
         if (current != null){
             Song info = (Song) current.getData();
-            get(current.getLeft(), data, list, type);
-            get(current.getRight(), data, list, type);
-            if (type.equalsIgnoreCase("Cancion")){
+            get(current.getLeft(), data, list);
+            get(current.getRight(), data, list);
                 if (info.getTitulo().equalsIgnoreCase(data))
                     list.add(current.getData());
-            } else if (type.equalsIgnoreCase("Album")){
-                if (info.getAlbum().equalsIgnoreCase(data))
-                    list.add(current.getData());
-            }
+
         }
         return list;
     }

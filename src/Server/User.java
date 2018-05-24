@@ -8,7 +8,6 @@ public class User implements Comparable<User>{
     private String password;
 
     public User(){
-
     }
 
     public User(String username, String name, String surname, int age, String password) {

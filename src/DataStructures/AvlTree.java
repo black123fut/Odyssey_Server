@@ -87,7 +87,6 @@ public class AvlTree<T extends Comparable> {
             get(current.getRight(), data, list);
             if (info.getArtista().equalsIgnoreCase(data))
                 list.add(current.getData());
-            list.add(current.getData());
         }
         return list;
     }

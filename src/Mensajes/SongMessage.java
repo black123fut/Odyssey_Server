@@ -13,6 +13,10 @@ public class SongMessage extends Message {
     private String album;
     @JacksonXmlProperty(localName="genero")
     private String genero;
+    @JacksonXmlProperty(localName="year")
+    private String year;
+    @JacksonXmlProperty(localName="duracion")
+    private String duracion;
     @JacksonXmlProperty(localName="letra")
     private String letra;
     @JacksonXmlProperty(localName="bytes")
@@ -52,6 +56,22 @@ public class SongMessage extends Message {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
     }
 
     public String getLetra() {
