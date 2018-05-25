@@ -27,8 +27,7 @@ public class Server extends Thread{
             getUserTree();
             while(true){
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("Usuario registrado");
-
+                System.out.println("usuario");
                 UserManager user = new UserManager(this, clientSocket);
                 userList.add(user);
                 user.start();

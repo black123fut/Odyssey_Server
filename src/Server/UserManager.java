@@ -17,7 +17,6 @@ import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.Scanner;
 
-
 public class UserManager extends Thread{
     private Socket clientSocket;
     private Server server;
@@ -77,17 +76,66 @@ public class UserManager extends Thread{
                             mensaje.getOpcode().equalsIgnoreCase("011")) {
                     Message<String[][]> message = mapper.readValue(xml, new TypeReference<Message<String[][]>>() {});
                     Sort(message);
-                } else if (mensaje.getOpcode().equalsIgnoreCase("012")){
-                    System.out.println(xml);
+                }
+                else if (mensaje.getOpcode().equalsIgnoreCase("012")){
                     Message<SongMessage> message = mapper.readValue(xml, new TypeReference<Message<SongMessage>>() {});
                     deleteSong(message);
+                }
+                else if (mensaje.getOpcode().equalsIgnoreCase("014")){
+                    Message<MetadataMessage> message = mapper.readValue(xml, new TypeReference<Message<MetadataMessage>>() {});
+                    setMetadata(message);
                 }
 
             }
 
+            clientSocket.close();
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    private void setMetadata(Message<MetadataMessage> message) throws IOException{
+        File archivo = new File("songs.json");
+        ObjectMapper jsonMapper = new ObjectMapper();
+        Song[] tmpSong= jsonMapper.readValue(archivo, Song[].class);
+        LinkedList<Song> sonList = new LinkedList<>();
+        XmlMapper xmlMapper = new XmlMapper();
+
+        MetadataMessage data = message.getData();
+
+        for (int i = 0; i < tmpSong.length; i++) {
+            sonList.add(tmpSong[i]);
+        }
+
+        for (int i = 0; i < sonList.length(); i++) {
+            if (sonList.get(i).getTitulo().equalsIgnoreCase(data.getCancion()) &&
+                    sonList.get(i).getArtista().equalsIgnoreCase(data.getArtista())){
+
+                if (data.getType().equalsIgnoreCase("Artista")){
+                    sonList.get(i).setArtista(data.getInfo());
+                } else if (data.getType().equalsIgnoreCase("Cancion")){
+                    sonList.get(i).setTitulo(data.getInfo());
+                } else if (data.getType().equalsIgnoreCase("Album")){
+                    sonList.get(i).setAlbum(data.getInfo());
+                } else if (data.getType().equalsIgnoreCase("Año")){
+                    sonList.get(i).setYear(data.getInfo());
+                } else {
+                    Message<InfoMessage> response = writeInfoMessage("002", "Seleccione un tipo");
+                    send(xmlMapper.writeValueAsString(response));
+                }
+                break;
+            }
+        }
+
+        Song[] songs = new Song[sonList.length()];
+        for (int i = 0; i < sonList.length(); i++) {
+            songs[i] = sonList.get(i);
+        }
+
+        Message<InfoMessage> response = writeInfoMessage("014", "Exito alcambiar los datos");
+        send(xmlMapper.writeValueAsString(response));
+
+        jsonMapper.writerWithDefaultPrettyPrinter().writeValue(archivo, songs);
     }
 
     private void deleteSong(Message<SongMessage> message) throws IOException {
@@ -101,7 +149,7 @@ public class UserManager extends Thread{
             if (tmpSongs[i].getAlbum().equalsIgnoreCase(data.getAlbum()) &&
                     tmpSongs[i].getTitulo().equalsIgnoreCase(data.getCancion()) &&
                     tmpSongs[i].getArtista().equalsIgnoreCase(data.getArtista())){
-                String path = pathMaker(data.getGenero(), data.getArtista(), data.getCancion());
+                String path = pathMaker(tmpSongs[i].getGenero(), data.getArtista(), data.getCancion());
                 File archive = new File(path);
 
                 if (archive.delete()){
@@ -150,7 +198,6 @@ public class UserManager extends Thread{
         }
 
         String path = pathMaker(data.getGenero(), data.getArtista(), data.getCancion());
-        System.out.println(path);
         songList.add(new Song(data.getCancion(), data.getArtista(),
                     data.getGenero(), data.getAlbum(), data.getYear(), data.getDuracion(),
                     data.getLetra(), path));
@@ -252,14 +299,6 @@ public class UserManager extends Thread{
     }
 
     public void play(Message<SongMessage> message) throws FileNotFoundException, IOException{
-//        File mp3 = new File("src/music/torero.mp3");
-
-
-//        File tmp = File.createTempFile("test", "mp3");
-//        tmp.deleteOnExit();
-//        FileOutputStream fos = new FileOutputStream(tmp);
-//        fos.write(mp3Array);
-//        fos.close();
         File archivo = new File("songs.json");
         ObjectMapper jsonMapper = new ObjectMapper();
         Song[] songs = jsonMapper.readValue(archivo, Song[].class);
@@ -269,7 +308,8 @@ public class UserManager extends Thread{
         byte[] mp3Array;
 
         for (int i = 0; i < songs.length; i++) {
-            if(data.getArtista().equalsIgnoreCase(songs[i].getArtista()) && data.getCancion().equalsIgnoreCase(songs[i].getTitulo())){
+            if(data.getArtista().equalsIgnoreCase(songs[i].getArtista()) &&
+                    data.getCancion().equalsIgnoreCase(songs[i].getTitulo())){
                 mp3Array = Files.readAllBytes(Paths.get(songs[i].getPath()));
 
                 Message<SongMessage> songMessage = new Message<>();
@@ -293,20 +333,6 @@ public class UserManager extends Thread{
         XmlMapper mapper2 = new XmlMapper();
         //Manda la respuesta al cliente.
         send(mapper2.writeValueAsString(errorMessage));
-
-
-//        Message<SongMessage> songMessage = new Message<>();
-//        songMessage.setOpcode("004");
-//
-//        //System.out.println(mp3Array[0]);
-////        mp3Array = Files.readAllBytes(Paths.get("src/music/torero.mp3"));
-//
-//        SongMessage song  = new SongMessage();
-//        song.setBytes(Base64.getEncoder().encodeToString(mp3Array));
-//
-//        songMessage.setData(song);
-//        XmlMapper mapper = new XmlMapper();
-//        send(mapper.writeValueAsString(songMessage));
     }
 
     public void search(Message<SearchMessage> message) throws  IOException{
@@ -317,27 +343,24 @@ public class UserManager extends Thread{
         ObjectMapper jsonMapper = new ObjectMapper();
         Song[] songs = jsonMapper.readValue(archivo, Song[].class);
 
-        BinaryTree<Song> tree = new BinaryTree<>();
-        AvlTree<Song> avlTree = new AvlTree<>();
-        SplayTree<Integer, Song> splayTree = new SplayTree<>();
-        BTree<Song> bTree = new BTree<>();
-
         LinkedList<Song> songList;
 
-
         if (data.getType().equalsIgnoreCase("Artista")){
+            AvlTree<Song> avlTree = new AvlTree<>();
             for (int i = 0; i < songs.length; i++) {
                 avlTree.add(songs[i]);
             }
             songList = avlTree.get(message.getData().getInput());
         }
         else if (data.getType().equalsIgnoreCase("Cancion")){
+            BTree<Song> bTree = new BTree<>();
             for (int i = 0; i < songs.length; i++) {
                 bTree.insert(songs[i]);
             }
             songList = bTree.get(message.getData().getInput());
         }
         else if (data.getType().equalsIgnoreCase("Album")){
+            SplayTree<Integer, Song> splayTree = new SplayTree<>();
             for (int i = 0; i < songs.length; i++) {
                 splayTree.insert(i, songs[i]);
             }
@@ -360,16 +383,8 @@ public class UserManager extends Thread{
         response.setData(songsArray);
 
         send(xmlMapper.writeValueAsString(response));
-
-//        xmlMapper.writeValue(new File("test.xml"), response);
-//        System.out.println(xmlMapper.writeValueAsString(response));
-//        Message<InfoMessage> response = writeInfoMessage("008", );
-
-        //continuara
-
     }
 
-    @SuppressWarnings("Duplicates")
     public void Sort(Message<String[][]> message) throws IOException{
         String[][] dataMessage = message.getData();
         LinkedList<Song> songs = new LinkedList<>();
@@ -381,6 +396,8 @@ public class UserManager extends Thread{
             songs.get(i).setTitulo(dataMessage[i][0]);
             songs.get(i).setArtista(dataMessage[i][1]);
             songs.get(i).setAlbum(dataMessage[i][2]);
+            songs.get(i).setYear(dataMessage[i][3]);
+            songs.get(i).setDuracion(dataMessage[i][4]);
         }
 
         if (message.getOpcode().equalsIgnoreCase("009"))
