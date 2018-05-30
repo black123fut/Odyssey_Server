@@ -7,14 +7,14 @@ public class BTree<T extends Comparable<T>> {
     private BNode root;
 
     /**
-     * Creates an empty balanced tree.
+     * Constructor.
      */
     public BTree() {
         root = null;
     }
 
     /**
-     * Inserts an element into the tree.
+     * Inserta un elemento en el arbol.
      */
     public void insert(T info) {
         insert(info, root, null, false);
@@ -40,6 +40,9 @@ public class BTree<T extends Comparable<T>> {
         }
     }
 
+    /**
+     * Reestructura el arbol.
+     */
     private void restructInsert(BNode node, boolean wasRight) {
 
         if (node != root) {

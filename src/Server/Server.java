@@ -5,7 +5,6 @@ import DataStructures.LinkedList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -13,21 +12,28 @@ import java.net.Socket;
 public class Server extends Thread{
     private int port;
 
-    private LinkedList<UserManager> userList = new LinkedList<UserManager>();
-    private BinaryTree<User> userTree = new BinaryTree<>();
+    private LinkedList<UserManager> userList = new LinkedList<>();
+    private BinaryTree<User> userTree;
 
+    /**
+     * Constructor.
+     * @param port Numero de puerto.
+     */
     public Server(int port){
         this.port = port;
     }
 
+    /**
+     * Corre el thread del servidor.
+     */
     @Override
     public void run(){
         try{
             ServerSocket serverSocket = new ServerSocket(port);
-            getUserTree();
+            updateUserTree();
             while(true){
                 Socket clientSocket = serverSocket.accept();
-                System.out.println("usuario");
+                System.out.println("Usuario registrado");
                 UserManager user = new UserManager(this, clientSocket);
                 userList.add(user);
                 user.start();
@@ -37,16 +43,17 @@ public class Server extends Thread{
         }
     }
 
-    public void getUserTree() throws IOException {
+    /**
+     * Actualiza el arbol binario de los usuarios.
+     */
+    public void updateUserTree() throws IOException {
         File archivo = new File("users.json");
         ObjectMapper mapperJson = new ObjectMapper();
         User[] users = mapperJson.readValue(archivo, User[].class);
-
+        userTree = new BinaryTree<>();
+        //guarda los usuarios en el arbol binario.
         for (int i = 0; i < users.length; i++) {
-            if (users[i] != null){
-                userTree.add(users[i]);
-                break;
-            }
+            userTree.add(users[i]);
         }
     }
 

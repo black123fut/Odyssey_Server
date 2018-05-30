@@ -14,3 +14,4 @@
 012 - Solicitud para eliminar una cancion.
 013 - Cancion eliminada.
 014 - Cambiar metadata.
+015 - Buscar letra.

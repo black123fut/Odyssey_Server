@@ -11,7 +11,7 @@ public class SplayTree<T extends Comparable<T>, U extends Comparable<U>> {
     }
 
     /**
-     * Insert into the tree.
+     * Inserta un elemento dentro del arbol.
      */
     public void insert(T key, U value) {
         SplayNode<T, U> n;
@@ -37,19 +37,6 @@ public class SplayTree<T extends Comparable<T>, U extends Comparable<U>> {
         }
         root = n;
     }
-
-    /**
-     * Find an item in the tree.
-     */
-    public U find(T key) {
-        if (root == null) {
-            return null;
-        }
-        splay(key);
-        if (root.key.compareTo(key) != 0) return null;
-        return root.value;
-    }
-
 
     private void splay(T key) {
         SplayNode<T, U> l, r, t, y;

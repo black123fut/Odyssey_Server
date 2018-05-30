@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="244.0" y="673.0">Server.Server</node>
+    <node x="1386.6381578947369" y="110.0">Mensajes.Message</node>
+    <node x="346.7464912280702" y="0.0">Server.User</node>
+    <node x="1087.0" y="717.0">Mensajes.InfoMessage</node>
+    <node x="839.0" y="585.0">Mensajes.SignInMessage</node>
+    <node x="1756.0" y="618.0">Mensajes.MetadataMessage</node>
+    <node x="591.0" y="684.0">Mensajes.LogInMessage</node>
+    <node x="0.0" y="453.0">Server.Song</node>
+    <node x="1297.0" y="486.0">Mensajes.SongMessage</node>
+    <node x="503.1214912280702" y="1198.0">Server.UserManager</node>
+    <node x="1538.0" y="684.0">Mensajes.SearchMessage</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="Server.UserManager" target="Mensajes.LogInMessage">
+      <point x="0.0" y="-224.5" />
+      <point x="714.1214912280702" y="1178.0" />
+      <point x="705.0" y="1178.0" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="Mensajes.SignInMessage" target="Mensajes.Message">
+      <point x="0.0" y="-180.5" />
+      <point x="953.0" y="413.0" />
+      <point x="1426.7631578947369" y="413.0" />
+      <point x="-66.875" y="81.5" />
+    </edge>
+    <edge source="Server.UserManager" target="Mensajes.Message">
+      <point x="177.68421052631584" y="-224.5" />
+      <point x="891.8057017543861" y="1168.0" />
+      <point x="1982.5" y="1168.0" />
+      <point x="1982.5" y="413.0" />
+      <point x="1560.5131578947369" y="413.0" />
+      <point x="66.875" y="81.5" />
+    </edge>
+    <edge source="Server.UserManager" target="Server.User">
+      <point x="-44.42105263157896" y="-224.5" />
+      <point x="669.7004385964913" y="1108.0" />
+      <point x="569.5" y="1108.0" />
+      <point x="569.5" y="433.0" />
+      <point x="489.2464912280702" y="433.0" />
+      <point x="28.5" y="191.5" />
+    </edge>
+    <edge source="Server.UserManager" target="Mensajes.MetadataMessage">
+      <point x="155.47368421052624" y="-224.5" />
+      <point x="869.5951754385965" y="1158.0" />
+      <point x="1864.0" y="1158.0" />
+      <point x="0.0" y="147.5" />
+    </edge>
+    <edge source="Server.UserManager" target="Mensajes.SearchMessage">
+      <point x="133.26315789473688" y="-224.5" />
+      <point x="847.3846491228071" y="1148.0" />
+      <point x="1637.0" y="1148.0" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="Mensajes.LogInMessage" target="Mensajes.Message">
+      <point x="0.0" y="-81.5" />
+      <point x="705.0" y="403.0" />
+      <point x="1400.0131578947369" y="403.0" />
+      <point x="-93.625" y="81.5" />
+    </edge>
+    <edge source="Server.UserManager" target="Mensajes.SignInMessage">
+      <point x="22.210526315789366" y="-224.5" />
+      <point x="736.3320175438596" y="1098.0" />
+      <point x="953.0" y="1098.0" />
+      <point x="0.0" y="180.5" />
+    </edge>
+    <edge source="Server.UserManager" target="Server.Server">
+      <point x="-155.47368421052636" y="-224.5" />
+      <point x="558.6478070175439" y="1158.0" />
+      <point x="275.5" y="1158.0" />
+      <point x="-126.0" y="92.5" />
+    </edge>
+    <edge source="Server.UserManager" target="Mensajes.InfoMessage">
+      <point x="66.63157894736833" y="-224.5" />
+      <point x="780.7530701754386" y="1118.0" />
+      <point x="1229.5" y="1118.0" />
+      <point x="47.5" y="48.5" />
+    </edge>
+    <edge source="Server.Server" target="Server.UserManager">
+      <point x="63.0" y="92.5" />
+      <point x="464.5" y="1128.0" />
+      <point x="625.2793859649123" y="1128.0" />
+      <point x="-88.84210526315792" y="-224.5" />
+    </edge>
+    <edge source="Mensajes.SearchMessage" target="Mensajes.Message">
+      <point x="0.0" y="-81.5" />
+      <point x="1637.0" y="433.0" />
+      <point x="1507.0131578947369" y="433.0" />
+      <point x="13.375" y="81.5" />
+    </edge>
+    <edge source="Server.UserManager" target="Server.Song">
+      <point x="-177.68421052631584" y="-224.5" />
+      <point x="536.4372807017544" y="1168.0" />
+      <point x="168.0" y="1168.0" />
+      <point x="56.0" y="312.5" />
+    </edge>
+    <edge source="Mensajes.MetadataMessage" target="Mensajes.Message">
+      <point x="0.0" y="-147.5" />
+      <point x="1864.0" y="423.0" />
+      <point x="1533.7631578947369" y="423.0" />
+      <point x="40.125" y="81.5" />
+    </edge>
+    <edge source="Server.UserManager" target="Mensajes.SongMessage">
+      <point x="88.84210526315792" y="-224.5" />
+      <point x="802.9635964912281" y="1128.0" />
+      <point x="1352.25" y="1128.0" />
+      <point x="-55.25" y="279.5" />
+    </edge>
+    <edge source="Mensajes.SongMessage" target="Mensajes.Message">
+      <point x="0.0" y="-279.5" />
+      <point x="1407.5" y="433.0" />
+      <point x="1480.2631578947369" y="433.0" />
+      <point x="-13.375" y="81.5" />
+    </edge>
+    <edge source="Mensajes.InfoMessage" target="Mensajes.Message">
+      <point x="0.0" y="-48.5" />
+      <point x="1182.0" y="423.0" />
+      <point x="1453.5131578947369" y="423.0" />
+      <point x="-40.125" y="81.5" />
+    </edge>
+    <edge source="Server.Server" target="Server.User">
+      <point x="78.75" y="-92.5" />
+      <point x="480.25" y="433.0" />
+      <point x="432.2464912280702" y="433.0" />
+      <point x="-28.5" y="191.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6877144818119424" x="718.5" y="357.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

@@ -9,9 +9,14 @@ public class BinaryTree<T extends Comparable> {
         root = null;
     }
 
+    /**
+     * Inserta un elemento en el arbol.
+     * @param data Elemento que se insertara en el arbol.
+     */
     public void add(T data){
         this.root = this.add(data, this.root);
     }
+
 
     private TreeNode add(T data, TreeNode<T> current){
         if (current == null){
@@ -24,6 +29,10 @@ public class BinaryTree<T extends Comparable> {
         return current;
     }
 
+    /**
+     * Remueve un nodo del arbol.
+     * @param data elemnto que se busca eliminar.
+     */
     public void remove(T data){
         this.root = remove(data, this.root);
     }
@@ -45,6 +54,11 @@ public class BinaryTree<T extends Comparable> {
         return current;
     }
 
+    /**
+     * Busca el elemento mas pequeno del arbol.
+     * @param current Elemento en el que busca.
+     * @return Elementos a la izquierda en el arbol.
+     */
     private TreeNode<T> findMin(TreeNode<T> current){
         if (current == null){
             return null;
@@ -55,25 +69,15 @@ public class BinaryTree<T extends Comparable> {
         }
     }
 
+    /**
+     * Obtiene una lista de los elementos del arbol.
+     * @param object Nombre que se busca.
+     * @return La lista con los elementos que se buscaban.
+     */
     public LinkedList<T> get(String object){
         LinkedList<T> list = new LinkedList<>();
         return this.get(root, object, list);
     }
-
-//    private T get(TreeNode<T> current, T data, LinkedList<T> list){
-//        Song info = (Song) current.getData();
-//
-//        if (info.getTitulo() == data){
-//            list.add(current.getData());
-//        } else {
-//            T tmp = get(current.getLeft(), data, list);
-//            if (tmp == null){
-//                tmp = get(current.getRight(), data, list);
-//            }
-//        }
-//
-//        return null;
-//    }
 
     /**
      * Recorre el arbol para almacenarlos en una lista.

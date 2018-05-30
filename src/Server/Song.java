@@ -14,6 +14,17 @@ public class Song implements Comparable<Song>{
 
     }
 
+    /**
+     * Constructor.
+     * @param titulo Titulo de la cancion.
+     * @param artista Artista de la cancion.
+     * @param genero Genero de la cancion.
+     * @param album Album de la cancion.
+     * @param year Year de la cancion.
+     * @param duracion Duracion de la cancion.
+     * @param letra Letra de la cancion.
+     * @param path Ruta de la cancion.
+     */
     public Song(String titulo, String artista, String genero, String album, String year, String duracion, String letra, String path) {
         this.titulo = titulo;
         this.artista = artista;
@@ -89,26 +100,11 @@ public class Song implements Comparable<Song>{
         this.path = path;
     }
 
-//    public int compareSong(Song o) {
-//        if (getTitulo().compareTo(o.getTitulo()) < 0){
-//            return -1;
-//        } else if (getTitulo().compareTo(o.getTitulo()) > 0){
-//            return 1;
-//        } else {
-//            return 0;
-//        }
-//    }
-
-    public int compareArtist(Song o) {
-        if (getArtista().compareTo(o.getArtista()) < 0){
-            return -1;
-        } else if (getArtista().compareTo(o.getArtista()) > 0){
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-
+    /**
+     * Metodo que compara el nombre de los album.
+     * @param o La cancion con la que se compara.
+     * @return El valor de ubicacion.
+     */
     public int compareAlbum(Song o){
         if (getAlbum().compareTo(o.getAlbum()) < 0){
             return -1;
@@ -119,6 +115,11 @@ public class Song implements Comparable<Song>{
         }
     }
 
+    /**
+     * Metodo que compara el nombre de las canciones.
+     * @param o La cancion con la que se compara.
+     * @return El valor de ubicacion.
+     */
     @Override
     public int compareTo(Song o) {
         if (getTitulo().compareTo(o.getTitulo()) < 0){

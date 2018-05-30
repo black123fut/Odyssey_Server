@@ -3,7 +3,7 @@
   "artista" : "Rick Astley",
   "genero" : "Pop",
   "album" : "Whenever You Need Somebody",
-  "year" : null,
+  "year" : "1987",
   "duracion" : "212.636",
   "letra" : "We're no strangers to love You know the rules and so do I A full commitment's what I'm thinking of You wouldn't get this from any other guy I just wanna tell you how I'm feeling Gotta make you understand Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you We've known each other for so long Your heart's been aching, but You're too shy to say it Inside, we both know what's been going on We know the game and we're gonna play it And if you ask me how I'm feeling Don't tell me you're too blind to see Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you (Ooh, give you up) (Ooh, give you up) Never gonna give, never gonna give (Give you up) Never gonna give, never gonna give (Give you up) We've known each other for so long Your heart's been aching, but You're too shy to say it Inside, we both know what's been going onWe know the game and we're gonna play it I just wanna tell you how I'm feeling Gotta make you understand Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you Never gonna give you up Never gonna let you down Never gonna run around and desert you Never gonna make you cry Never gonna say goodbye Never gonna tell a lie and hurt you",
   "path" : "src/Music/Pop/Rick Astley - Never Gonna Give You Up.mp3"
@@ -14,16 +14,16 @@
   "album" : "Minutes to Midnight",
   "year" : "2007",
   "duracion" : "258.308",
-  "letra" : "    ",
+  "letra" : "I close both locks below the window I close both blinds and turn away Sometimes solutions aren't so simple Sometimes goodbye's the only way, oh And the sun will set for you The sun will set for you And the shadow of the day Will embrace the world in gray And the sun will set for you In cards and flowers on your window Your friends all plead for you to stay Sometimes beginnings aren't so simple Sometimes goodbye's the only way, oh And the sun will set for you The sun will set for you And the shadow of the day Will embrace the world in gray And the sun will set for you And the shadow of the day Will embrace the world in gray And the sun will set for you And the shadow of the day Will embrace the world in gray And the sun will set for you",
   "path" : "src/Music/Rock;Alternative/Linkin Park - Shadow of the Day.mp3"
 }, {
   "titulo" : "What I've Done",
   "artista" : "Linkin Park",
   "genero" : "Rock;Alternative",
   "album" : "Minutes to Midnight",
-  "year" : null,
+  "year" : "2007",
   "duracion" : "207.412",
-  "letra" : "    ",
+  "letra" : "n this farewell There's no blood, there's no alibi 'Cause I've drawn regret From the truth of a thousand lies So let mercy come and wash away What I've done I'll face myself to cross out what I've become Erase myself And let go of what I've done Put to rest what you thought of me While I clean this slate With the hands of uncertainty So let mercy come and wash away What I've done I'll face myself to cross out what I've become Erase myself And let go of what I've done For what I've done I start again And whatever pain may come Today this ends I'm forgiving what I've done I'll face myself to cross out what I've become Erase myself And let go of what I've done What I've done (Na na na, na na na, na na na, na na na) Forgiving what I've done (Na na na, na na na, na na na, na na na, na na na) (Na na na na)",
   "path" : "src/Music/Rock;Alternative/Linkin Park - What I've Done.mp3"
 }, {
   "titulo" : "New Divide",
@@ -32,7 +32,7 @@
   "album" : "Greatest Hits",
   "year" : "2010",
   "duracion" : "268.793",
-  "letra" : "    ",
+  "letra" : "I remember black skies The lightning all around me I remember each flash As time began to blur Like a startling sign That fate had finally found me And your voice was all I heard That I get what I deserve So give me reason To prove me wrong To wash this memory clean Let the floods cross The distance in your eyes Give me reason To fill this hole Connect this space between Let it be enough to reach the truth that lies Across this new divide There was nothing inside The memories left abandoned There was nowhere to hide The ashes fell like snow And the ground caved in Between where we were standing And your voice was all I heard That I get what I deserve So give me reason To prove me wrong To wash this memory clean Let the floods cross The distance in your eyes Across this new divide In every loss in every lie In every truth that you deny And each regret and each goodbye Was a mistake too great to hide And your voice was all I heard That I get what I deserve So give me reason To prove me wrong To wash this memory clean Let the floods cross The distance in your eyes Give me reason To fill this hole Connect this space between Let it be enough to reach the truth that lies Across this new divide Across this new divide Across this new divide",
   "path" : "src/Music/Rock;Alternative/Linkin Park - New Divide.mp3"
 }, {
   "titulo" : "Numb",
@@ -41,7 +41,7 @@
   "album" : "Meteora",
   "year" : "2003",
   "duracion" : "186.631",
-  "letra" : "    ",
+  "letra" : "I'm tired of being what you want me to beFeeling so faithless, lost under the surfaceI don't know what you're expecting of mePut under the pressure of walking in your shoesCaught in the undertow, just caught in the undertowEvery step that I take is another mistake to youCaught in the undertow, just caught in the undertowI've become so numb, I can't feel you thereBecome so tired, so much more awareBy becoming this all I want to doIs be more like me and be less like youCan't you see that you're smothering me?Holding too tightly, afraid to lose control'Cause everything that you thought I would beHas fallen apart right in front of youCaught in the undertow, just caught in the undertowEvery step that I take is another mistake to youCaught in the undertow, just caught in the undertowAnd every second I waste is more than I can take!I've become so numb, I can't feel you thereBecome so tired, so much more awareBy becoming this all I want to doIs be more like me and be less like youAnd I know I may end up failing tooBut I know you were just like me with someone disappointed in youI've become so numb, I can't feel you thereBecome so tired, so much more awareBy becoming this all I want to doIs be more like me and be less like youI've become so numb, I can't feel you thereI'm tired of being what you want me to beI've become so numb, I can't feel you thereI'm tired of being what you want me to be",
   "path" : "src/Music/Rock;Alternative/Linkin Park - Numb.mp3"
 }, {
   "titulo" : "17 años",
@@ -50,7 +50,7 @@
   "album" : "Una lluvia de rosas",
   "year" : "1999",
   "duracion" : "184.475",
-  "letra" : "    ",
+  "letra" : "Amigo sabes acabo de conocer, una mujer que aun es una niña Sabes tiene los 17 aun, es jovencita y ya es mi novia  Amigo sabes acabo de conocer, una mujer que aun es una niña Sabes tiene los 17 aun, es jovencita y ya es mi novia Amo su inocencia, 17 años  Amo su errores, 17 años  Soy su primer novio, 17 años  Su primer amor Amo su inocencia, 17 años  Amo su errores, 17 años  Soy su primer novio, 17 años  Su primer amor Es callada, timida, inocente y tiene la mirada,  Le tomo la mano y siente algo extraño  La abrazo, me abraza y empieza a temblar  A temblar de miedo diciendome que nunca  Habia sentido sensacion asi, en su vida  Asi en su vida. Que si eso es el amor?, que si eso es el amor?  Que si eso es el amor?, que si eso es el amor?  Que si eso es el amor?, que si eso es el amor?  Que si eso es el amor?, que si eso es el amor? Es callada, timida, inocente y tiene la mirada,  Le tomo la mano y siente algo extraño  La abrazo, me abraza y empieza a temblar  A temblar de miedo diciendome que nunca  Habia sentido sensacion asi, en su vida  Asi en su vida. Que si eso es el amor?, que si eso es el amor?  Que si eso es el amor?, que si eso es el amor?  Que si eso es el amor?, que si eso es el amor?  Que si eso es el amor?, que si eso es el amor?",
   "path" : "src/Music/Cumbia/Los Angeles Azules - 17 años.mp3"
 }, {
   "titulo" : "Mil horas",
@@ -59,7 +59,7 @@
   "album" : "El show de la sonora dinamita",
   "year" : "1992",
   "duracion" : "223.7",
-  "letra" : "    ",
+  "letra" : "la otra noche  te espere bajo la lluvia  dos horas mil horas  como un perro  y cuando llegaste  me miraste y me dijiste  loco, estas mojado  ya no te quiero   Hace frio  y estoy lejos de casa  hace tiempo que estoy sentado sobre esta piedra  yo me pregunto  para que sirven las guerras?  tengo un cohete  en el pantalon  voz estas tan fria  como la nieve  a mi alrededor  voz estas tan blanca  y yo no se que hacer   la otra noche  te espere bajo la lluvia  dos horas mil horas  como un perro  y cuando llegaste  me miraste y me dijiste  loco, estas mojado  ya no te quiero   (y seguire esperandote con la sonora dinamita)   la otra noche  te espere bajo la lluvia  dos horas mil horas  como un perro  y cuando llegaste  me miraste y me dijiste  loco, estas mojado  ya no te quiero   en el circo voz ya  sos una estrella  una estrella roja  que todos se la imaginan  si te preguntan  voz no me conocias nono",
   "path" : "src/Music/Cumbia/La Sonora Dinamita - Mil horas.mp3"
 }, {
   "titulo" : "Nadie como tu",
@@ -86,7 +86,7 @@
   "album" : "Adventure",
   "year" : "2015",
   "duracion" : "193.275",
-  "letra" : "    ",
+  "letra" : "Tell me whose side you're on Tell me whose side you're on You're on, you're on Tell me whose side you're on You have some nerve showing your face here It had been so long I thought you'd disappeared Why'd you pretend that we're still so close It was all too clear We need love most Damn girl, since you've come around, girl Need to know right now, so Won't you just Tell me whose side you're on Lately, felt the chance that maybe You could become my baby If you just Tell me whose side you're on Tell me whose side you're on You're on, you're on Tell me whose side you're on It's been so long since I've heard your name I was losing hope That you felt the same And it's been so long since I've seen your face That in my own mind I had been replaced Damn girl, since you've come around, girl Need to know right now, so Won't you just Tell me whose side you're on Lately, felt the chance that maybe You could become my baby If you just Tell me whose side you're on Tell me whose side you're on You're on, you're on Tell me whose side you're on Damn girl, since you've come around, girl Need to know right now, so Won't you just Tell me whose side you're on Lately, felt the chance that maybe You could become my baby If you just Tell me whose side you're on",
   "path" : "src/Music/Dance/Madeon - You're On (feat. Kyan).mp3"
 }, {
   "titulo" : "Pay No Mind",
@@ -95,7 +95,7 @@
   "album" : "Adventure",
   "year" : "2015",
   "duracion" : "249.99",
-  "letra" : "    ",
+  "letra" : "She was dancing, she was smiling Roses blooming in her cheeks In a quiet kind of litany She accepted some defeat And then she twirled into the arms Of disgrace, and then repelled Now, she's fallen to her knees But you couldn't ever tell And then, she asked me how we got here I told her, 'I don't know!' And if you keep on asking I'll just keep saying so This isn't what I wanted It isn't what you need But let them keep on talking Just calm yourself, and pay Don't you pay them any mind Don't you pay them any mind You know this happens every time Now, don't you pay them any mind Let it burn, as if we'd bothered We'll make sound based on their eyes As she closes, just to open There's some sirens wailing by And as she's off to tell her secret To her friends somewhere in town And her friend just takes a moment And that's why I'm not around Darling, this is something I should have told you long ago I just want you to feel safe I just want to make you glow How you glowed when we were young There was nothing on our minds When you jump, for your love Baby, you're nothing long of time And then, she asked me how we got here I told her, 'I don't know' And if you keep on asking I'll just keep saying so This isn't what I wanted It isn't what you need But let them keep on talking Just calm yourself, and pay Don't you pay them any mind Don't you pay them any mind You know this happens every time Now, don't you pay them any mind Why do we have to, go further every time? Some days you hear it (don't listen, I'll carry you) Some days you don't (to the universe we'll never go) Sometimes you feel it (it's not worth it, help me) Sometimes you won't Just calm yourself, and pay Don't you pay them any mind Don't you pay them any mind You know this happens every time Now, don't you pay them any mind Don't you pay them any mind Don't you pay them any mind You know this happens every time Now, don't you pay them any mind",
   "path" : "src/Music/Dance/Madeon - Pay No Mind (feat. Passion Pit).mp3"
 }, {
   "titulo" : "Nonsense",
@@ -104,7 +104,7 @@
   "album" : "Adventure",
   "year" : "2015",
   "duracion" : "226.343",
-  "letra" : "    ",
+  "letra" : "Well, I am here for you Open up your eyes and don't look away I'm dripping down from the fangs When I hear your name, I feel the pain And I'm crawling on the floor just thinking that I'm a fool But I'll wash myself and I'll stand again After flying with angels, yeah And I'm backing out the corner Don't you think that I'm a runner I'll be coming with my guns up Shooting at the moon to bring the sun up Fall back and close your eyes I'm at the bottom, we can hide and be forgotten Come closer, say my name Say it forever, we can run away together And keep on crushing on our love like this On our love like this, on our love like this I'll keep on crushing on our love like this We don't need to say the words cause we're speaking nonsense Well, you said before To let down and close my eyes Well I am here Grabbing at my chest with a broken heart, yeah And I'm filled with fears I've been ripped up and tossed like a mouse Wrestled with the heavens and the devil himself Your voice can break my bones When you speak a force rushes in and slowly Rips me to pieces, yeah I would give my life to another Just to prove I'm not a runner I'll be coming with my guns up Shooting at the moon to bring the sun up Fall back and close your eyes I'm at the bottom, we can hide and be forgotten Come closer, say my name Say it forever, we can run away together And keep on crushing on our love like this On our love like this, on our love like this I'll keep on crushing on our love like this We don't need to say the words cause we're speaking nonsense Don't say anything at all I'm drifting down I don't wanna get pulled up Just get close to me, close to me Fall back Fall back and close your eyes I'm at the bottom, we can hide and be forgotten Come closer, say my name Say it forever, we can run away together And keep on crushing on our love like this On our love like this, on our love like this I'll keep on crushing on our love like this We don't need to say the words cause we're speaking nonsense",
   "path" : "src/Music/Dance/Madeon - Nonsense (feat. Mark Foster).mp3"
 }, {
   "titulo" : "Dios no me abandones",
@@ -149,6 +149,87 @@
   "album" : "Tiempo De Vals",
   "year" : "1990",
   "duracion" : "294.407",
-  "letra" : "    ",
+  "letra" : "Tiempo de vals es el tiempo hacia atrás  donde hacer lo de siempre es volver a empezar  donde el mundo se para y te observa girar  es tiempo para amar   Tiempo de vals tiempo pare sentir  y decir sin hablar y escuchar sin oír  un silencio que rompe en el aire un violín  es tiempo de vivir   Bésame en tiempo de vals  un dos tres un dos tres  sin parar de bailar  haz que este tiempo de vals  un dos tres un dos tres  no termine jamas   Tiempo de vals tiempo para viajar  por encima del sol por debajo del mar  sin saber si te llevo o me dejo llevar  no es tiempo de verdad   Tiempo de vals tiempo para abrazar  la pasión que prefieres y hacerla girar  y elevarse violenta como un huracán  es tiempo en espiral   Bésame en tiempo de vals  un dos tres un dos tres  sin parar de bailar  Haz que este tiempo de vals  un dos tres un dos tres  no termine jamas",
   "path" : "src/Music/Pop/Chayanne - Tiempo De Vals.mp3"
+}, {
+  "titulo" : "Torero",
+  "artista" : "Chayanne",
+  "genero" : "Pop",
+  "album" : "A solas con Chayanne",
+  "year" : "2002",
+  "duracion" : "217.604",
+  "letra" : "De lunes a domingo voy desesperado, el corazón prendido allí en el calendario buscándote y buscando como un mercenario, tú dime donde estás que yo no te he encontrado... Las manecillas giran yo voy al contrario, bebiéndome la vida a sorbos y a tragos, Me viste así de frente que tremendo impacto...para unirme a tu mirada dime si hay que ser...  Torero poner el alma en el ruedo no importa lo que se venga pa que sepas que te quiero como un buen torero... me juego la vida por tí...(bis) Te dicen que ya me vieron solitario en un callejón que ya no duermo y desvarío que el humor ya me cambió Y tú por dónde estás que mi presión ya no me da, te buscaré, vuelve conmigo, porque tu no sabes, Que yo te necesito como el perro al amo que si tu no respondes aquí todo es caos, Me viste así de frente, que tremendo impacto, para unir me a tu mirada, dime si hay que ser... torero... De noviembre hasta enero sé que te necesito, ay de junio a febrero quiero que estés conmigo Y en marzo el amor en diciembre tú y yo no importa mi amada, si hay, si hay que ser...  torero...",
+  "path" : "src/Music/Pop/Chayanne - Torero.mp3"
+}, {
+  "titulo" : "Beings",
+  "artista" : "Madeon",
+  "genero" : "House",
+  "album" : "Adventure (Deluxe)",
+  "year" : "2015",
+  "duracion" : "216.008",
+  "letra" : "These will be times that I will miss Don’t blame me if I don’t come through I spent a lifetime on this But I would give it up for you Because I know what you do out of passion But it only makes it harder for me And I know that you’re scared by the notion We’ll become who we're meant to be Fall in the hands of a greater unknown Let me be there And tell me if you need time to prepare All we’ll demand is the world Because I know what you do out of passion But it only makes it harder for me And I know that you’re scared by the notion We’ll become who we're meant to be Oh what we meant to be Oh what we meant to be Oh what we meant to be Oh what we meant to be We’ll become who we're meant to be We’ll become who we're meant because I know We’ll become who we're meant to be We’ll become who we're meant because I know We’ll become who we're meant to be",
+  "path" : "src/Music/House/Madeon - Beings.mp3"
+}, {
+  "titulo" : "Eres Mía",
+  "artista" : "Romeo Santos",
+  "genero" : "Latin;Merengue;Salsa",
+  "album" : "Formula, Vol. 2",
+  "year" : "2014",
+  "duracion" : "292.628",
+  "letra" : "Ya me han informado que tu novio es un insípido aburrido Tú que eres fogata y el tan frío Dice tu amiguita que es celoso no quiere que sea tu amigo Sospecha que soy un pirata y robaré su loro No te asombres Si una noche Entro a tu cuarto y nuevamente te hago mía Bien conoces Mis errores El egoísmo de ser dueño de tu vida Eres mía (mía mía) No te hagas la loca eso muy bien ya lo sabias Si tu te casas El día de tu boda Le digo a tu esposo con risas Que solo es prestada La mujer que ama Porque sigues siendo mía You won't forget Romeo Gostoso Dicen que un clavo saca un clavo pero eso es solo rima No existe una herramienta que saque mi amor No te asombres Si una noche Entro a tu cuarto y nuevamente te hago mía Bien conoces Mis errores El egoísmo de ser dueño de tu vida Eres mía (mía mía) No te hagas la loca eso muy bien ya lo sabias Si tu te casas El día de tu boda Le digo a tu esposo con risas Que solo es prestada La mujer que ama Porque sigues siendo mía (mía mía mía) Te deseo lo mejor Y el mejor soy yo The King You know you heart is mine And you love me forever You know you heart is mine And you love me forever Baby Your heart is mine And you love me forever Baby your heart is mine And you love me forever No te asombres Si una noche Entro a tu cuarto y nuevamente te hago mía Bien conoces Mis errores El egoísmo de ser dueño de tu vida Eres mía (mía mía mía) No te hagas la loca eso muy bien ya lo sabias Si tu te casas El día de tu boda Le digo a tu esposo con risas Que solo es prestada La mujer que ama Porque sigues siendo mía",
+  "path" : "src/Music/Latin;Merengue;Salsa/Romeo Santos - Eres Mía.mp3"
+}, {
+  "titulo" : "Everybody",
+  "artista" : "Backstreet Boys",
+  "genero" : "Pop",
+  "album" : "Backstreet's Back",
+  "year" : "1997",
+  "duracion" : "226.038",
+  "letra" : "Everybody, rock your body Everybody, rock your body rightBackstreet's back, alright, hey baby Oh my God, we're back again Brothers, sisters, everybody singGonna bring you the flavor show you howGot a gotta question for you better answer now, yeahAm I original?(Yeah)Am I the only one?(Yeah)Am I sexual?(Yeah)Am I everything you need?You better rock your body nowEverybody(Yeah)Rock your body(Yeah)Everybody, rock your body rightBackstreet's back alright, alrightNow throw your hands up in the airAnd wave'em around like you just don't careAnd if you wanna party let me hear you yell'Cause we've got it goin' on againAm I original?(Yeah)Am I the only one?(Yeah)Am I sexual?(Yeah)Am I everything you need?You better rock your body nowEverybody(Yeah)Rock your body(Yeah)Everybody, rock your body rightBackstreet's back alright, alrightEverybody(Yeah)Rock your body(Yeah)Everybody, rock your body rightBackstreet's backEverybody(Yeah)Rock your body(Yeah)Everybody, rock your body rightBackstreet's back alright",
+  "path" : "src/Music/Pop/Backstreet Boys - Everybody (Backstreet's Back).mp3"
+}, {
+  "titulo" : "Missing You",
+  "artista" : "Backstreet Boys",
+  "genero" : "Pop",
+  "album" : "Backstreet's Back",
+  "year" : "1997",
+  "duracion" : "265.117",
+  "letra" : "Oh baby, I'm missing you We used to love so strong Tell me where did we go wrong Oh baby, I'm missing you They say I'll learn to forget But it sure ain't happened yet  Been checkin' all the places where we used to go (used to go) Been lookin' for your face inside the crowd I've been talkin' to the people that we used to know But nobody wants to say Where you hang out And when I call your phone Seems like your never, ever home And you don't return my calls (return my calls) It tears me up (tears me up) It's breakin' up my heart (it's breakin' up my heart)  [Chorus]  I still have your pictures hung around my room (around my room) They're the only thing that's left of you and me Girl what can I do to make you come back soon And make it just the way it used to be Oh, is there someone new Could never go on without you Girl I don't wanna think about it (think about it) I can't sleep at night No this can't be right Come back into my life (come back, baby come back)  [Chorus]  [Bridge:] I know there's a chance for you and I And I believe there's no way our love could die So no matter how long it takes, I'll wait for you And whatever it takes I'll be there for you I'll be there, I'll be there [2x]",
+  "path" : "src/Music/Pop/Backstreet Boys - Missing You.mp3"
+}, {
+  "titulo" : "That's What She Said",
+  "artista" : "Backstreet Boys",
+  "genero" : "Pop",
+  "album" : "Backstreet's Back",
+  "year" : "1997",
+  "duracion" : "244.088",
+  "letra" : "There are people that say what you wanna hear Even on a raining day they'll tell you the sky is clear When you really really love someone Am I right when I say that you want them near? And if you can't even tell them things that they wanna hear  [Chorus:] Always, forever All things she said Never say never Those simple lies that she fed I will never leave you All the love I thought she had But can you blame me, no Cuz that's what she said That's what she said She told me we'd see forever That's what she said, she said, yeah  And there are people that say what they really mean She said she'd always be there She said she'd always care But just when you think that you can Trust that someone you love Tell me why, or do you know How stars can fall from above?  [Chorus]  Cuz you made promises That you couldn't keep But you're not hurting yourself You're only hurting me (you're only hurting me) Why would you say things that you really didn't mean? (you really mean) Oh how can I make you see Just what you did to me? Oh, you said how much you really cared Just when I thought I was in love Girl, how could you dare? If I were you I could not lie even once To the face of the one That I love so much",
+  "path" : "src/Music/Pop/Backstreet Boys - That's What She Said.mp3"
+}, {
+  "titulo" : "El Viejo Del Sombrerón",
+  "artista" : "La Sonora Dinamita",
+  "genero" : "Mexicano",
+  "album" : "El Show de La Sonora Dinamita",
+  "year" : "1992",
+  "duracion" : "253.772",
+  "letra" : "Dicen que es vinotinto, pero es un Renault uva mi carrito Es un último modelo El siempre anda conmigo, donde quiera voy en mi carrito, porque él es mi compañero. Ese carrito es mi vida, que nunca he tenido queja Cuando consigo una chica él me lleva donde quiera Cuando consigo una chica él me lleva donde quiera. Señorita, a la orden ¿la llevo? No gracias, estoy esperando al viejo del sombrerón Uuuy, chucuta, no me digas, que tipo tan afortunado Ahí llegó vea.  El viejo del sombrerón Ese viejo si es de buenas El viejo del sombrerón Para conseguir mujeres El viejo del sombrerón Será que tiene secreto El viejo del sombrerón Ese viejo si la mueve. Voy a comprarme un sombrero Un sombrero bien jalón Pa´ hacerle la competenciaal viejo del sombrerón Señorita de mi almatengo una preocupación Por qué está tan entregadaal viejo del sombrerón. Lo que pasa es que una gota de agua sobre una piedra hace un orificio Ese viejo tiene su carrito y cada vez que pasa se sonríe conmigo Va de largo, se regresa Si me encuentra parada en la puerta me lanza un piropo y me toca el pito Va de largo, se regresa Si me encuentra parada en la puerta me lanza un piropo y me toca el pito, pi pi piY es que a cada ratico, que pasa el viejito y me toca el pito, pi pi piY es que a cada ratico, que pasa el viejito y me toca el pito, pi pi piSiempre vivo pendiente, pi pi, cuando el viejo me toca, pi pi piSiempre vivo pendiente, pi pi, cuando el viejo me toca, pi pi piYa me tiene amañada con el pi pi con el pi pi con el pi pi con el pi pi Me toca el pito, pi pi, me tiene amañada con el pi pi. Lo que pasa es que una gota de agua sobre una piedra hace un orificio Ese viejo tiene su carrito y cada vez que pasa se sonríe conmigo Va de largo, se regresa Si me encuentra parada en la puerta me lanza un piropo y me toca el pito Va de largo, se regresa Si me encuentra parada en la puerta me lanza un piropo y me toca el pito, pi pi piY es que a cada ratico, que pasa el viejito y me toca el pito, pi pi piY es que a cada ratico, que pasa el viejito y me toca el pito, pi pi piSiempre vivo pendiente, pi pi, cuando el viejo me toca, pi pi piSiempre vivo pendiente, pi pi, cuando el viejo me toca, pi pi piYa me tiene amañada con el pi pi con el pi pi con el pi pi con el pi pi Me toca el pito, pi pi, me tiene amañada con el pi pi.",
+  "path" : "src/Music/Mexicano/La Sonora Dinamita - El Viejo Del Sombrerón.mp3"
+}, {
+  "titulo" : "Lo Poco Que Tengo",
+  "artista" : "Ricardo Arjona",
+  "genero" : "Pop latino",
+  "album" : "Viaje",
+  "year" : "2014",
+  "duracion" : "234.74",
+  "letra" : "Yo tengo una guitarra vieja Preñada con esta canción Amigos que nunca aconsejan Y un beso a mi disposición Lo que tengo es tan poco Que vale un millón Yo tengo el aire que respiro Y el mar to'ito para mi Amores viejos y suspiros Y si alguien dice no, yo si Yo poco que tengo es tan poco Que es también pa' ti Las huellas de tus pies descalzos El humo de la cafetera 3 cuadros surrealistas falsos Tu risa que trae primavera Aun que el tiempo este fatal Lo poco que tengo es tan poco Pero es esencial Tengo un aguacero para mi verano Y una ola para surfear Una sombra que me sigue a donde voy Y 2 pies pa' caminar Lo poco que tengo es tan poco Que hay pa' regalar Tengo la noticia de que no es noticia De que no me importa nada Aprendí a graduarme en todo de aprendiz Y no imploro agua pasada Lo poco que tengo es tan poco Que me hace feliz Que lejos esta la fortuna De lo que venden en la tele Si es gratis ir a ver la luna Que no se queje al que le duele Lo poco que tengo es tan poco Que no hay quien me ordene Tengo un reloj entre las nubes Un sueño que se va de fiesta Tus pechos como 2 querubes La tarde para hacer la siesta Aun que el mundo esta al revés Lo poco que tengo es tan poco Que garante es Tengo un aguacero para mi verano Y una ola para surfear Una sombra que me sigue a donde voy Y 2 pies pa' caminar Lo poco que tengo es tan poco Que hay pa' regalar Tengo la noticia de que no es noticia De que no me importa nada Aprendí a graduarme en todo de aprendiz Y no imploro agua pasada Lo poco que tengo es tan poco Que me hace feliz",
+  "path" : "src/Music/Pop latino/Ricardo Arjona - Lo Poco Que Tengo.mp3"
+}, {
+  "titulo" : "Loba",
+  "artista" : "Shakira",
+  "genero" : "Pop latino",
+  "album" : "Loba",
+  "year" : "2009",
+  "duracion" : "229.316",
+  "letra" : "Sigilosa al pasar  Sigilosa al pasar  Esa loba es especial  Mirala, caminar caminar   Quién no ha querido a una diosa licántropa  En el ardor de una noche romantica  Mis aullidos son el llamado  Yo quiero un lobo domesticado   Por fin he encontrado un remedio infalible que borre del todo la culpa  No pienso quedarme a tu lado mirando la tele y oyendo disculpas  la vida me ha dado un hambre voráz y tu apenas me das caramelos  Me voy con mis piernas y mi juventúd por ahí aunque te maten los celos   Una loba en el armario  Tiene ganas de salir  Deja que se coma el barrio  Antes de irte a dormir",
+  "path" : "src/Music/Pop latino/Shakira - Loba.mp3"
 } ]

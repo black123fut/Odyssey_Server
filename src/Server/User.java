@@ -10,6 +10,14 @@ public class User implements Comparable<User>{
     public User(){
     }
 
+    /**
+     * Constructor.
+     * @param username Nombre de usuario.
+     * @param name Nombre de la persona.
+     * @param surname Apellido de la persona.
+     * @param age Edad de la persona.
+     * @param password Contrasena de la persona.
+     */
     public User(String username, String name, String surname, int age, String password) {
         this.username = username;
         this.name = name;
@@ -58,6 +66,11 @@ public class User implements Comparable<User>{
         this.password = password;
     }
 
+    /**
+     * Compara el nombre de usuario de cada persona registrada.
+     * @param o Usuario con el que se compara.
+     * @return La direccion en el arbol.
+     */
     @Override
     public int compareTo(User o) {
         if (getUsername().compareTo(o.getUsername()) < 0){
